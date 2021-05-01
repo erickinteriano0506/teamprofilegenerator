@@ -23,6 +23,21 @@ function getInfo (projectTeam) {
                         return false;
                     }
                 }
+            },
+
+            {
+                type: 'list',
+                name: 'role',
+                message: "What is the employee's role?",
+                choices: ["Manager", "Intern", "Engineer", "Employee"],
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log("Please enter a role")
+                        return false;
+                    }
+                }
             }
         ])
 }
