@@ -52,6 +52,20 @@ function getInfo (projectTeam) {
                         return false;
                     }
                 }
-            }
+            },
+
+            {
+                type: 'input',
+                name: 'id',
+                message: "What is their ID?",
+                validate: Input => {
+                    if(Input) {
+                        return true;
+                    } else {
+                        console.log("Please enter an ID")
+                        return false;
+                    }
+                }
+            },
         ])
 }
