@@ -6,23 +6,23 @@ const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require('./lib/Intern');
 
-const empolyess = [];
+const employees = [];
 
-function startApp() {
+function getInfo (projectTeam) {
     inquirer
         .prompt([
             {
-                name: 'startApp',
-                type: 'confirm',
-                message: 'Would you like to make a team?',
-            },
-        ])
-        .then((res, err) => {
-            if (err) console.error(err);
-            if (res.startApp) {
-                addManager();
-            } else {
-                process.exit();
+                type: 'input',
+                name: 'name',
+                message: "What is the employee's name?",
+                validate: Input => {
+                    if (Input) {
+                        return true;
+                    } else {
+                        console.log("Please enter employees name")
+                        return false;
+                    }
+                }
             }
-        });
+        ])
 }
