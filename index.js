@@ -38,6 +38,20 @@ function getInfo (projectTeam) {
                         return false;
                     }
                 }
+            },
+
+            {
+                type: 'input',
+                name: 'email',
+                message: "What is their email?",
+                validate: Input => {
+                    if(Input) {
+                        return true;
+                    } else {
+                        console.log("Please enter an email")
+                        return false;
+                    }
+                }
             }
         ])
 }
