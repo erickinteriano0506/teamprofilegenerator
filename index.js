@@ -5,6 +5,7 @@ const Employee = require("./Employee");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require('./lib/Intern');
+const { ADDRGETNETWORKPARAMS } = require("dns");
 
 const employees = [];
 
@@ -68,4 +69,57 @@ function getInfo (projectTeam) {
                 }
             },
         ])
-}
+
+        .then(answer => {
+            if(answer.role === 'Manager') {
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            name: 'office',
+                            message: "What is the managers office number?",
+                        }
+                    ])
+                    .then (answer => {
+                        const teamManager = new Manager(answer.name, answer.role, ans.email, and.id, answer.officeNumber);
+                        employees.push(teamManager);
+                        console.log(employees);
+                        addTeam();
+                    })
+            } else if(answer.role === 'Intern') {
+                inquirer
+                    .prompt ([
+                        {
+                            type: 'input',
+                            name: 'school',
+                            message: 'What school are they currently attending?',
+                        }
+                    ])
+                    .then (answer => {
+                        const teamIntern = new Intern(answer.name, answer.role, answer.email, answer.id, answer.school);
+                        employees.push(teamIntern);
+                        console.log(employees);
+                        addTeam();
+                    })
+            } else if(answer.role === 'Engineer') {
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            name: 'gitHub',
+                            message: 'What is their GitHub username?',
+                        }
+                    ])
+                    .then (answer => {
+                        const teamEngineer = new Engineer(answer.name, answer.role, answer.email, answer.id, answer.gitHub);
+                        employees.push(teamEngineer);
+                        console.log(employees);
+                        addTeam();
+                    })
+            } else {
+                const teamEmployee = new Employee(answer.name, answer.role, answer.email, answer.id);
+                employees.push(teamEmployee);
+                addTeam();
+            }
+        })
+} 
